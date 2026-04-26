@@ -1,0 +1,274 @@
+<div class="flex flex-col h-screen transition-all duration-300" [class]="!collapsed ? 'w-72' : 'w-20'">
+
+    <div class="flex items-center justify-between px-4 pt-3 shrink-0">
+
+        @if(!collapsed){
+        <span class="font-bold text-2xl text-gray-500">
+            Tasks
+        </span>
+        }
+
+        <p-button class="text-gray-500" (onClick)="toggleSidebar()" [icon]="collapsed ? 'pi pi-bars' : 'pi pi-times'"
+            rounded="true" outlined="true">
+        </p-button>
+
+    </div>
+
+    <div class="flex-1 overflow-y-auto">
+        <p-scrollpanel [style]="{ width: '100%', height: '200px' }">
+            <p>
+
+            <ul class="list-none p-3 m-0">
+
+                <li>
+
+                    <div (click)="toggleForm()" pRipple
+                        class="p-3 flex items-center justify-between cursor-pointer rounded-lg hover:bg-gray-100">
+
+                        <h2 class="font-bold text-gray-500">Fr</h2>
+
+                        @if(!collapsed){
+                        <span class="font-bold text-gray-500">
+                            Form
+                        </span>
+
+                        <i class="text-gray-500 pi" [class.pi-chevron-down]="!formOpen"
+                            [class.pi-chevron-up]="formOpen">
+                        </i>
+                        }
+
+                    </div>
+
+
+                    @if(formOpen && !collapsed){
+                    <ul class="list-none p-0 m-0 ml-4">
+
+                        <li>
+                            <a routerLink="formarray" pRipple
+                                class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                                <span>Form Array</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                                <span>Form Child</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                                <span>Form Disable</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    }
+
+                </li>
+
+                <li class="mt-6">
+
+                    <div (click)="toggleTable()" pRipple
+                        class="p-3 flex items-center justify-between cursor-pointer rounded-lg hover:bg-gray-100">
+
+                        <h2 class="font-bold text-gray-500">Tb</h2>
+
+                        @if(!collapsed){
+                        <span class="font-bold text-gray-500">
+                            Table
+                        </span>
+
+                        <i class="text-gray-500 pi" [class.pi-chevron-down]="!tableOpen"
+                            [class.pi-chevron-up]="tableOpen">
+                        </i>
+                        }
+
+                    </div>
+
+
+                    @if(tableOpen && !collapsed){
+                    <ul class="list-none p-0 m-0 ml-4">
+
+                        <li>
+                            <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                                <span>Crud Table</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    }
+
+                </li>
+                <li class="mt-6">
+
+                    <div (click)="toggleTable()" pRipple
+                        class="p-3 flex items-center justify-between cursor-pointer rounded-lg hover:bg-gray-100">
+
+                        <h2 class="font-bold text-gray-500">Tb</h2>
+
+                        @if(!collapsed){
+                        <span class="font-bold text-gray-500">
+                            Table
+                        </span>
+
+                        <i class="text-gray-500 pi" [class.pi-chevron-down]="!tableOpen"
+                            [class.pi-chevron-up]="tableOpen">
+                        </i>
+                        }
+
+                    </div>
+
+
+                    @if(tableOpen && !collapsed){
+                    <ul class="list-none p-0 m-0 ml-4">
+
+                        <li>
+                            <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                                <span>Crud Table</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    }
+
+                </li>
+                <li class="mt-6">
+
+                    <div (click)="toggleTable()" pRipple
+                        class="p-3 flex items-center justify-between cursor-pointer rounded-lg hover:bg-gray-100">
+
+                        <h2 class="font-bold text-gray-500">Tb</h2>
+
+                        @if(!collapsed){
+                        <span class="font-bold text-gray-500">
+                            Table
+                        </span>
+
+                        <i class="text-gray-500 pi" [class.pi-chevron-down]="!tableOpen"
+                            [class.pi-chevron-up]="tableOpen">
+                        </i>
+                        }
+
+                    </div>
+
+
+                    @if(tableOpen && !collapsed){
+                    <ul class="list-none p-0 m-0 ml-4">
+
+                        <li>
+                            <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                                <span>Crud Table</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    }
+
+                </li>
+                <li class="mt-6">
+
+                    <div (click)="toggleTable()" pRipple
+                        class="p-3 flex items-center justify-between cursor-pointer rounded-lg hover:bg-gray-100">
+
+                        <h2 class="font-bold text-gray-500">Tb</h2>
+
+                        @if(!collapsed){
+                        <span class="font-bold text-gray-500">
+                            Table
+                        </span>
+
+                        <i class="text-gray-500 pi" [class.pi-chevron-down]="!tableOpen"
+                            [class.pi-chevron-up]="tableOpen">
+                        </i>
+                        }
+
+                    </div>
+
+
+                    @if(tableOpen && !collapsed){
+                    <ul class="list-none p-0 m-0 ml-4">
+
+                        <li>
+                            <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                                <span>Crud Table</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    }
+
+                </li>
+                <li class="mt-6">
+
+                    <div (click)="toggleTable()" pRipple
+                        class="p-3 flex items-center justify-between cursor-pointer rounded-lg hover:bg-gray-100">
+
+                        <h2 class="font-bold text-gray-500">Tb</h2>
+
+                        @if(!collapsed){
+                        <span class="font-bold text-gray-500">
+                            Table
+                        </span>
+
+                        <i class="text-gray-500 pi" [class.pi-chevron-down]="!tableOpen"
+                            [class.pi-chevron-up]="tableOpen">
+                        </i>
+                        }
+
+                    </div>
+
+
+                    @if(tableOpen && !collapsed){
+                    <ul class="list-none p-0 m-0 ml-4">
+
+                        <li>
+                            <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                                <span>Crud Table</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    }
+
+                </li>
+                <li class="mt-6">
+
+                    <div (click)="toggleTable()" pRipple
+                        class="p-3 flex items-center justify-between cursor-pointer rounded-lg hover:bg-gray-100">
+
+                        <h2 class="font-bold text-gray-500">Tb</h2>
+
+                        @if(!collapsed){
+                        <span class="font-bold text-gray-500">
+                            Table
+                        </span>
+
+                        <i class="text-gray-500 pi" [class.pi-chevron-down]="!tableOpen"
+                            [class.pi-chevron-up]="tableOpen">
+                        </i>
+                        }
+
+                    </div>
+
+
+                    @if(tableOpen && !collapsed){
+                    <ul class="list-none p-0 m-0 ml-4">
+
+                        <li>
+                            <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                                <span>Crud Table</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    }
+
+                </li>
+
+
+            </ul>
+        </p-scrollpanel>
+    </div>
+
+</div>
