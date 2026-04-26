@@ -7,10 +7,19 @@ import { Sidebar } from './features/components/layout/sidebar/sidebar';
   imports: [RouterOutlet, Sidebar],
   template: `
 
-   <div class="flex min-h-screen flex-col justify-between ">
-   <app-sidebar></app-sidebar>
-   <router-outlet></router-outlet>
-   </div>
+   <div class="flex h-screen overflow-hidden">
+
+
+  <aside class=" h-screen border-r border-gray-200">
+    <app-sidebar></app-sidebar>
+  </aside>
+
+
+  <main class="flex-1 h-screen overflow-y-auto p-6">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>
   `
   ,
   styleUrl: './app.css'
