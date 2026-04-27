@@ -1,0 +1,19 @@
+:host {
+    display: block;
+    height: 100%;
+}
+
+:host ::ng-deep .sidebar-scroll {
+    height: 100%;
+}
+
+
+::ng-deep .sidebar-scroll .p-scrollpanel-bar {
+    background: #cbd5e1;
+    border-radius: 999px;
+    width: 3px;
+}
+
+:host ::ng-deep .sidebar-scroll .p-scrollpanel-bar:hover {
+    background: #94a3b8;
+}

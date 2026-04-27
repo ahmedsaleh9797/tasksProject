@@ -1,0 +1,7 @@
+<div class="px-2 p-0 text-sm text-red-600 rounded bg-red-100" role="alert">
+
+    @if (control.errors && control.touched) {
+    {{ errorMessages | validation : control.errors }}
+    }
+
+</div>

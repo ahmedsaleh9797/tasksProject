@@ -1,0 +1,57 @@
+<h1 class="text-gray-600 text-xl font-medium text-center    ">Driven Form :</h1>
+<div class="min-h-screen flex items-center justify-center  ">
+
+    <form #registerForm="ngForm" (ngSubmit)="submitRegisterForm(registerForm)"
+        class="mx-auto  space-y-4 max-w-md mx-auto">
+
+
+
+        <input type="text" name="name" [(ngModel)]="formData.name" required minlength="3" maxlength="20" #name="ngModel"
+            placeholder="Name" class="input" />
+
+        <app-error [control]="name" [errorMessages]="validationMessages.name">
+        </app-error>
+
+        <input type="email" name="email" [(ngModel)]="formData.email" required email #email="ngModel"
+            placeholder="Email" class="input" />
+
+        <app-error [control]="email" [errorMessages]="validationMessages.email">
+        </app-error>
+
+
+        <input type="password" name="password" [(ngModel)]="formData.password" required pattern="^[A-Z][a-z0-9]{7,20}$"
+            #password="ngModel" placeholder="Password" class="input" />
+
+        <app-error [control]="password" [errorMessages]="validationMessages.password">
+        </app-error>
+
+
+        <input type="password" name="rePassword" [(ngModel)]="formData.rePassword" required #rePassword="ngModel"
+            placeholder="Confirm Password" class="input" />
+
+
+        <app-error [control]="rePassword" [errorMessages]="validationMessages.rePassword">
+        </app-error>
+
+        @if (rePassword.touched && formData.rePassword && !passwordMatch()) {
+        <div class="text-red-500 text-sm">
+            Passwords do not match
+        </div>
+        }
+
+
+        <input type="text" name="phone" [(ngModel)]="formData.phone" required pattern="^01[0125][0-9]{8}$"
+            #phone="ngModel" placeholder="Phone" class="input" />
+
+        <app-error [control]="phone" [errorMessages]="validationMessages.phone">
+        </app-error>
+
+
+        <p class="text-red-500 text-sm">{{ errMsg() }}</p>
+
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded w-full" [disabled]="isLoading()">
+            {{ isLoading() ? 'Loading...' : 'Register' }}
+        </button>
+
+    </form>
+</div>

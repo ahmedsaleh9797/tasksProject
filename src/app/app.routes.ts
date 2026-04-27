@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
- { path: '', redirectTo: 'formarray', pathMatch: 'full' },                     
+ { path: '', redirectTo: 'home', pathMatch: 'full' },    
+ {path:'home', loadComponent : () => import ('./features/components/home/home/home.component').then ((c)=> c.HomeComponent),title:'home'},   
+ {path:'register', loadComponent : () => import ('./features/components/auth/register/register.component').then ((c)=> c.RegisterComponent),title: 'register'},              
   {
     path: 'formarray',
     loadComponent: () =>
