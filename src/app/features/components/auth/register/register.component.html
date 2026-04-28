@@ -2,7 +2,7 @@
     <h1 class="text-center ms-3 mt-2 text-gray-600 text-xl font-medium  my-5">Templete Driven Form :</h1>
     <form #registerForm="ngForm" (ngSubmit)="submitRegisterForm(registerForm)" class="mx-auto max-w-md space-y-8">
 
-        <div class="space-y-2">
+        <div class="space-y-0">
             <p-floatLabel>
                 <input pInputText type="text" id="name" name="name" [(ngModel)]="formData.name" required minlength="3"
                     maxlength="20" #name="ngModel" class="input w-full" />
@@ -14,7 +14,7 @@
         </div>
 
 
-        <div class="space-y-2">
+        <div class="space-y-0">
             <p-floatLabel>
                 <input pInputText type="email" id="email" name="email" [(ngModel)]="formData.email" required email
                     #email="ngModel" class="input w-full" />
@@ -26,7 +26,7 @@
         </div>
 
 
-        <div class="space-y-2">
+        <div class="space-y-0">
             <p-floatLabel>
                 <input pInputText type="password" id="password" name="password" [(ngModel)]="formData.password" required
                     pattern="^[A-Z][a-z0-9]{7,20}$" #password="ngModel" class="input w-full" />
@@ -38,7 +38,7 @@
         </div>
 
 
-        <div class="space-y-2">
+        <div class="space-y-0">
             <p-floatLabel>
                 <input pInputText type="password" id="rePassword" name="rePassword" [(ngModel)]="formData.rePassword"
                     required #rePassword="ngModel" class="input w-full" />
@@ -56,7 +56,7 @@
         </div>
 
 
-        <div class="space-y-2">
+        <div class="space-y-0">
             <p-floatLabel>
                 <input pInputText type="text" id="phone" name="phone" [(ngModel)]="formData.phone" required
                     pattern="^01[0125][0-9]{8}$" #phone="ngModel" class="input w-full" />
