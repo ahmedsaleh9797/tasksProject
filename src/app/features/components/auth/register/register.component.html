@@ -1,50 +1,71 @@
-<h1 class="text-gray-600 text-xl font-medium text-center    ">Driven Form :</h1>
-<div class="min-h-screen flex items-center justify-center  ">
+<div class="bg-gray-100">
+    <h1 class="ms-3 mt-2 text-gray-600 text-xl font-medium  my-5">Templete Driven Form :</h1>
+    <form #registerForm="ngForm" (ngSubmit)="submitRegisterForm(registerForm)" class="mx-auto max-w-md space-y-8">
 
-    <form #registerForm="ngForm" (ngSubmit)="submitRegisterForm(registerForm)"
-        class="mx-auto  space-y-4 max-w-md mx-auto">
+        <div class="space-y-2">
+            <p-floatLabel>
+                <input pInputText type="text" id="name" name="name" [(ngModel)]="formData.name" required minlength="3"
+                    maxlength="20" #name="ngModel" class="input w-full" />
+                <label for="name">Name</label>
+            </p-floatLabel>
 
-
-
-        <input type="text" name="name" [(ngModel)]="formData.name" required minlength="3" maxlength="20" #name="ngModel"
-            placeholder="Name" class="input" />
-
-        <app-error [control]="name" [errorMessages]="validationMessages.name">
-        </app-error>
-
-        <input type="email" name="email" [(ngModel)]="formData.email" required email #email="ngModel"
-            placeholder="Email" class="input" />
-
-        <app-error [control]="email" [errorMessages]="validationMessages.email">
-        </app-error>
-
-
-        <input type="password" name="password" [(ngModel)]="formData.password" required pattern="^[A-Z][a-z0-9]{7,20}$"
-            #password="ngModel" placeholder="Password" class="input" />
-
-        <app-error [control]="password" [errorMessages]="validationMessages.password">
-        </app-error>
-
-
-        <input type="password" name="rePassword" [(ngModel)]="formData.rePassword" required #rePassword="ngModel"
-            placeholder="Confirm Password" class="input" />
-
-
-        <app-error [control]="rePassword" [errorMessages]="validationMessages.rePassword">
-        </app-error>
-
-        @if (rePassword.touched && formData.rePassword && !passwordMatch()) {
-        <div class="text-red-500 text-sm">
-            Passwords do not match
+            <app-error [control]="name" [errorMessages]="validationMessages.name">
+            </app-error>
         </div>
-        }
 
 
-        <input type="text" name="phone" [(ngModel)]="formData.phone" required pattern="^01[0125][0-9]{8}$"
-            #phone="ngModel" placeholder="Phone" class="input" />
+        <div class="space-y-2">
+            <p-floatLabel>
+                <input pInputText type="email" id="email" name="email" [(ngModel)]="formData.email" required email
+                    #email="ngModel" class="input w-full" />
+                <label for="email">Email</label>
+            </p-floatLabel>
 
-        <app-error [control]="phone" [errorMessages]="validationMessages.phone">
-        </app-error>
+            <app-error [control]="email" [errorMessages]="validationMessages.email">
+            </app-error>
+        </div>
+
+
+        <div class="space-y-2">
+            <p-floatLabel>
+                <input pInputText type="password" id="password" name="password" [(ngModel)]="formData.password" required
+                    pattern="^[A-Z][a-z0-9]{7,20}$" #password="ngModel" class="input w-full" />
+                <label for="password">Password</label>
+            </p-floatLabel>
+
+            <app-error [control]="password" [errorMessages]="validationMessages.password">
+            </app-error>
+        </div>
+
+
+        <div class="space-y-2">
+            <p-floatLabel>
+                <input pInputText type="password" id="rePassword" name="rePassword" [(ngModel)]="formData.rePassword"
+                    required #rePassword="ngModel" class="input w-full" />
+                <label for="rePassword">Confirm Password</label>
+            </p-floatLabel>
+
+            <app-error [control]="rePassword" [errorMessages]="validationMessages.rePassword">
+            </app-error>
+
+            @if (rePassword.touched && formData.rePassword && !passwordMatch()) {
+            <div class="text-red-500 text-sm mt-1">
+                Passwords do not match
+            </div>
+            }
+        </div>
+
+
+        <div class="space-y-2">
+            <p-floatLabel>
+                <input pInputText type="text" id="phone" name="phone" [(ngModel)]="formData.phone" required
+                    pattern="^01[0125][0-9]{8}$" #phone="ngModel" class="input w-full" />
+                <label for="phone">Phone</label>
+            </p-floatLabel>
+
+            <app-error [control]="phone" [errorMessages]="validationMessages.phone">
+            </app-error>
+        </div>
 
 
         <p class="text-red-500 text-sm">{{ errMsg() }}</p>

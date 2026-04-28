@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { ValidationPipe } from '@app/shared/pipes/validation-pipe';
-import { NgModel } from '@angular/forms';
+import { NgModel,AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-error',
@@ -11,7 +11,7 @@ import { NgModel } from '@angular/forms';
   
 })
 export class ErrorComponent {
-@Input() control!: NgModel;
+ @Input() control!: AbstractControl | NgModel | null;
   @Input() errorMessages!: any
 
 }
