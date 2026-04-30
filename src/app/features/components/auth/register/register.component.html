@@ -1,0 +1,98 @@
+<div class="h-dvh bg-gray-100 rounded-lg p-4">
+
+
+
+    <div class="mb-4">
+        <app-page-header [title]="pageTitle"></app-page-header>
+    </div>
+
+    <form #registerForm="ngForm" ngModelOptions="{ updateOn: 'change' }" (ngSubmit)="submitRegisterForm(registerForm)"
+        class="mx-auto max-w-md space-y-6 pb-6">
+
+
+        <div>
+            <p-floatLabel>
+                <input pInputText type="text" id="name" name="name" [(ngModel)]="formData.name"
+                    [disabled]="isRegistered()" required minlength="3" maxlength="20" #name="ngModel"
+                    class="input w-full" />
+                <label for="name">Name</label>
+            </p-floatLabel>
+
+            <app-error [control]="name" [errorMessages]="validationMessages.name" [useDirty]="true">
+            </app-error>
+        </div>
+
+
+        <div>
+            <p-floatLabel>
+                <input pInputText type="email" id="email" name="email" [(ngModel)]="formData.email"
+                    [disabled]="isRegistered()" required email #email="ngModel" class="input w-full" />
+                <label for="email">Email</label>
+            </p-floatLabel>
+
+            <app-error [control]="email" [errorMessages]="validationMessages.email" [useDirty]="true">
+            </app-error>
+        </div>
+
+        <div>
+            <p-floatLabel>
+                <input pInputText type="password" id="password" name="password" [(ngModel)]="formData.password"
+                    [disabled]="isRegistered()" required pattern="^[A-Z][a-z0-9]{7,20}$" #password="ngModel"
+                    class="input w-full" />
+                <label for="password">Password</label>
+            </p-floatLabel>
+
+            <app-error [control]="password" [errorMessages]="validationMessages.password" [useDirty]="true">
+            </app-error>
+        </div>
+
+
+        <div>
+            <p-floatLabel>
+                <input pInputText type="password" id="rePassword" name="rePassword" [(ngModel)]="formData.rePassword"
+                    [disabled]="isRegistered()" required #rePassword="ngModel" class="input w-full" />
+                <label for="rePassword">Confirm Password</label>
+            </p-floatLabel>
+
+            <app-error [control]="rePassword" [errorMessages]="validationMessages.rePassword" [useDirty]="true">
+            </app-error>
+
+            @if (rePassword.dirty && formData.rePassword && !passwordMatch() && !isRegistered()) {
+            <div class="text-red-500 text-sm mt-1">
+                Passwords do not match
+            </div>
+            }
+        </div>
+
+
+        <div>
+            <p-floatLabel>
+                <input pInputText type="text" id="phone" name="phone" [(ngModel)]="formData.phone"
+                    [disabled]="isRegistered()" required pattern="^01[0125][0-9]{8}$" #phone="ngModel"
+                    class="input w-full" />
+                <label for="phone">Phone</label>
+            </p-floatLabel>
+
+            <app-error [control]="phone" [errorMessages]="validationMessages.phone" [useDirty]="true">
+            </app-error>
+        </div>
+
+        <p class="text-red-500 text-sm">
+            {{ errMsg() }}
+        </p>
+
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded w-full disabled:opacity-50"
+            [disabled]="isLoading()">
+
+            {{
+            isLoading()
+            ? 'Loading...'
+            : isRegistered()
+            ? 'Edit'
+            : 'Register'
+            }}
+        </button>
+
+    </form>
+
+</div>

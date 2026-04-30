@@ -4,17 +4,18 @@ import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+
 @Component({
   selector: 'app-sidebar',
+  standalone: true,
   imports: [
     ButtonModule,
     RippleModule,
-   RouterLink,
-   ScrollPanelModule
-  
+    RouterLink,
+    ScrollPanelModule
   ],
   templateUrl: './sidebar.html',
-  styleUrl: './sidebar.css',
+  styleUrl: './sidebar.css'
 })
 export class Sidebar {
 
@@ -23,7 +24,7 @@ export class Sidebar {
   formOpen = false;
   tableOpen = false;
 
-  toggleSidebar(){
+  toggleSidebar() {
     this.collapsed = !this.collapsed;
   }
 
