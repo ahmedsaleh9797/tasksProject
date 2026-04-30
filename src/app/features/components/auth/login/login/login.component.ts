@@ -10,31 +10,27 @@ import { ErrorComponent } from '@app/shared/components/error/error.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { PageHeaderComponent } from '@app/shared/components/page-header/page-header.component';
-import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 @Component({
-  selector: 'app-login',
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     ErrorComponent,
     InputTextModule,
     FloatLabelModule,
     PageHeaderComponent ,
-    ToastModule
+  
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
 
+  private messageService = inject(MessageService);
   private router = inject(Router);
   private fb = inject(FormBuilder);
-
   errMsg: WritableSignal<string> = signal('');
   isLoading: WritableSignal<boolean> = signal(false);
-private messageService = inject(MessageService);
-
+pageTitle = 'Reactive Form';
 
   loginForm: FormGroup = this.fb.group({
     email: ['', [

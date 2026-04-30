@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Sidebar } from './features/components/layout/sidebar/sidebar';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Sidebar],
+  imports: [RouterOutlet, Sidebar,ToastModule],
   template: `
 
    <div class="flex h-screen overflow-hidden">
@@ -16,6 +17,8 @@ import { Sidebar } from './features/components/layout/sidebar/sidebar';
 
 
   <main class="flex-1 h-screen overflow-y-auto px-6 pt-3">
+     <p-toast position="top-right">
+    </p-toast>
     <router-outlet></router-outlet>
   </main>
 

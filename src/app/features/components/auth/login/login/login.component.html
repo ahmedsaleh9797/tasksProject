@@ -1,9 +1,8 @@
 <div>
-    <p-toast position="top-right">
-    </p-toast>
+
 
     <div class="mb-4">
-        <app-page-header title="Reactive Form"></app-page-header>
+        <app-page-header [title]="pageTitle"></app-page-header>
     </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()" class=" mx-auto max-w-md space-y-8">

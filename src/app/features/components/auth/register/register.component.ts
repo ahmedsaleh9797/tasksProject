@@ -4,32 +4,28 @@ import { ErrorComponent } from '@app/shared/components/error/error.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { PageHeaderComponent } from '@app/shared/components/page-header/page-header.component';
-import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-register',
-  standalone: true,
   imports: [
     FormsModule,
     ErrorComponent,
     InputTextModule,
     FloatLabelModule,
     PageHeaderComponent,
-    ToastModule
+  
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
 
+  private messageService = inject(MessageService);
   errMsg: WritableSignal<string> = signal('');
   isLoading: WritableSignal<boolean> = signal(false);
-
-
   isRegistered: WritableSignal<boolean> = signal(false);
-
-  private messageService = inject(MessageService);
+pageTitle = 'Template Driven Form';
 
   formData = {
     name: '',

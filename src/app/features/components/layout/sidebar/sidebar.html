@@ -11,118 +11,111 @@
         }
 
         <p-button (onClick)="toggleSidebar()" [icon]="collapsed ? 'pi pi-bars' : 'pi pi-times'"
-            styleClass="bg-white text-gray-700 border-none hover:bg-gray-100 transition" rounded="true">
+            styleClass="bg-white text-gray-500 border-none hover:bg-gray-100 transition" rounded="true">
         </p-button>
     </div>
 
-    <div class="flex-1 min-h-0">
-        <p-scrollpanel class="sidebar-scroll">
-            <ul class="list-none p-3 m-0">
+    <div class="flex-1 min-h-0 overflow-y-auto sidebar-scroll">
+        <ul class="list-none p-3 m-0">
 
+            <li>
 
-                <li>
+                <div (click)="toggleForm()" pRipple
+                    class="p-3 flex items-center justify-between cursor-pointer rounded-lg hover:bg-gray-100">
 
-                    <div (click)="toggleForm()" pRipple
-                        class="p-3 flex items-center justify-between cursor-pointer rounded-lg hover:bg-gray-100">
-
-                        @if(collapsed){
-                        <h2 class="font-bold text-gray-500">
-                            Fr
-                        </h2>
-                        }
-
-                        @if(!collapsed){
-                        <span class="font-bold text-gray-500">
-                            Form
-                        </span>
-
-                        <i class="text-gray-500 pi" [class.pi-chevron-down]="!formOpen"
-                            [class.pi-chevron-up]="formOpen">
-                        </i>
-                        }
-
-                    </div>
-
-                    @if(formOpen && !collapsed){
-                    <ul class="list-none p-0 m-0 ml-4">
-
-                        <li>
-                            <a routerLink="register" pRipple
-                                class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
-                                <span>Template Driven Form</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a routerLink="login" pRipple
-                                class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
-                                <span>Reactive Form</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a routerLink="formarray" pRipple
-                                class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
-                                <span>Form Array</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
-                                <span>Form Child</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
-                                <span>Form Disable</span>
-                            </a>
-                        </li>
-
-                    </ul>
+                    @if(collapsed){
+                    <h2 class="font-bold text-gray-500">
+                        Fr
+                    </h2>
                     }
 
-                </li>
+                    @if(!collapsed){
+                    <span class="font-bold text-gray-500">
+                        Form
+                    </span>
 
-
-
-                <li class="mt-6">
-
-                    <div (click)="toggleTable()" pRipple
-                        class="p-3 flex items-center justify-between cursor-pointer rounded-lg hover:bg-gray-100">
-
-                        @if(collapsed){
-                        <h2 class="font-bold text-gray-500">
-                            Tb
-                        </h2>
-                        }
-
-                        @if(!collapsed){
-                        <span class="font-bold text-gray-500">
-                            Table
-                        </span>
-
-                        <i class="text-gray-500 pi" [class.pi-chevron-down]="!tableOpen"
-                            [class.pi-chevron-up]="tableOpen">
-                        </i>
-                        }
-
-                    </div>
-
-                    @if(tableOpen && !collapsed){
-                    <ul class="list-none p-0 m-0 ml-4">
-                        <li>
-                            <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
-                                <span>Crud Table</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <i class="text-gray-500 pi" [class.pi-chevron-down]="!formOpen" [class.pi-chevron-up]="formOpen">
+                    </i>
                     }
 
-                </li>
+                </div>
 
-            </ul>
-        </p-scrollpanel>
+                @if(formOpen && !collapsed){
+                <ul class="list-none p-0 m-0 ml-4">
+
+                    <li>
+                        <a routerLink="register" pRipple
+                            class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                            <span>Template Driven Form</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="login" pRipple
+                            class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                            <span>Reactive Form</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="formarray" pRipple
+                            class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                            <span>Form Array</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                            <span>Form Child</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                            <span>Form Disable</span>
+                        </a>
+                    </li>
+
+                </ul>
+                }
+
+            </li>
+
+            <li class="mt-6">
+
+                <div (click)="toggleTable()" pRipple
+                    class="p-3 flex items-center justify-between cursor-pointer rounded-lg hover:bg-gray-100">
+
+                    @if(collapsed){
+                    <h2 class="font-bold text-gray-500">
+                        Tb
+                    </h2>
+                    }
+
+                    @if(!collapsed){
+                    <span class="font-bold text-gray-500">
+                        Table
+                    </span>
+
+                    <i class="text-gray-500 pi" [class.pi-chevron-down]="!tableOpen" [class.pi-chevron-up]="tableOpen">
+                    </i>
+                    }
+
+                </div>
+
+                @if(tableOpen && !collapsed){
+                <ul class="list-none p-0 m-0 ml-4">
+                    <li>
+                        <a pRipple class="flex items-center gap-2 p-3 rounded-lg cursor-pointer hover:bg-gray-100">
+                            <span>Crud Table</span>
+                        </a>
+                    </li>
+                </ul>
+                }
+
+            </li>
+
+        </ul>
     </div>
 
 </div>

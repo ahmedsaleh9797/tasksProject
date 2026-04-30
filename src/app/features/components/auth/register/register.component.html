@@ -1,15 +1,15 @@
-<div class="h-[100dvh] bg-gray-100 rounded-lg p-4">
+<div class="h-dvh bg-gray-100 rounded-lg p-4">
 
-    <p-toast position="top-right"></p-toast>
+
 
     <div class="mb-4">
-        <app-page-header title="Template Driven Form"></app-page-header>
+        <app-page-header [title]="pageTitle"></app-page-header>
     </div>
 
     <form #registerForm="ngForm" ngModelOptions="{ updateOn: 'change' }" (ngSubmit)="submitRegisterForm(registerForm)"
         class="mx-auto max-w-md space-y-6 pb-6">
 
-        <!-- NAME -->
+
         <div>
             <p-floatLabel>
                 <input pInputText type="text" id="name" name="name" [(ngModel)]="formData.name"
@@ -22,7 +22,7 @@
             </app-error>
         </div>
 
-        <!-- EMAIL -->
+
         <div>
             <p-floatLabel>
                 <input pInputText type="email" id="email" name="email" [(ngModel)]="formData.email"
@@ -34,7 +34,6 @@
             </app-error>
         </div>
 
-        <!-- PASSWORD -->
         <div>
             <p-floatLabel>
                 <input pInputText type="password" id="password" name="password" [(ngModel)]="formData.password"
@@ -47,7 +46,7 @@
             </app-error>
         </div>
 
-        <!-- CONFIRM PASSWORD -->
+
         <div>
             <p-floatLabel>
                 <input pInputText type="password" id="rePassword" name="rePassword" [(ngModel)]="formData.rePassword"
@@ -65,7 +64,7 @@
             }
         </div>
 
-        <!-- PHONE -->
+
         <div>
             <p-floatLabel>
                 <input pInputText type="text" id="phone" name="phone" [(ngModel)]="formData.phone"
