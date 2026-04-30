@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{c as m,e as p}from"./chunk-YDHHOALW.mjs";import"./chunk-CRDIDWJD.mjs";import{$a as n,Ha as t,ab as r,ub as a}from"./chunk-NU7MXOQT.mjs";import"./chunk-T55IDOPT.mjs";var i=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=t({type:o,selectors:[["app-formarray"]],decls:2,vars:0,template:function(e,c){e&1&&(n(0,"p"),a(1,"ahmed saleh "),r())},dependencies:[p,m],encapsulation:2})};export{i as FormarrayComponent};
