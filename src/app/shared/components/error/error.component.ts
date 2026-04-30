@@ -4,7 +4,7 @@ import { NgModel, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-error',
-  standalone: true,
+ 
   imports: [ValidationPipe],
   templateUrl: './error.component.html',
   styleUrl: './error.component.scss',
