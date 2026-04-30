@@ -1,23 +1,35 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ErrorComponent } from '@app/shared/components/error/error.component';
 import { InputTextModule } from 'primeng/inputtext';
-
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { PageHeaderComponent } from '@app/shared/components/page-header/page-header.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, ErrorComponent,InputTextModule,FloatLabelModule],
+  imports: [
+    FormsModule,
+    ErrorComponent,
+    InputTextModule,
+    FloatLabelModule,
+    PageHeaderComponent,
+    ToastModule
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
 
-  private router: Router = inject(Router);
+  errMsg: WritableSignal<string> = signal('');
+  isLoading: WritableSignal<boolean> = signal(false);
 
-  errMsg: WritableSignal<string> = signal<string>('');
-  isLoading: WritableSignal<boolean> = signal<boolean>(false);
+
+  isRegistered: WritableSignal<boolean> = signal(false);
+
+  private messageService = inject(MessageService);
 
   formData = {
     name: '',
@@ -59,20 +71,60 @@ export class RegisterComponent {
     return this.formData.password === this.formData.rePassword;
   }
 
+
   submitRegisterForm(form: NgForm) {
 
+
+    if (this.isRegistered()) {
+      this.isRegistered.set(false);
+
+      this.messageService.add({
+        severity:'info',
+        summary:'Edit Mode',
+        detail:'You can edit your data now'
+      });
+
+      return;
+    }
+
     if (form.invalid || !this.passwordMatch()) {
+
       form.control.markAllAsTouched();
+
       this.errMsg.set('Please fix form errors');
+
+      this.messageService.add({
+        severity:'error',
+        summary:'Validation Error',
+        detail:'Please fix form errors'
+      });
+
       return;
     }
 
     this.isLoading.set(true);
 
- 
+    this.messageService.add({
+      severity:'info',
+      summary:'Submitting',
+      detail:'Creating your account...'
+    });
+
     setTimeout(() => {
+
       this.isLoading.set(false);
-      this.router.navigate(['/home']);
-    }, 1000);
+
+   
+      this.isRegistered.set(true);
+
+      this.messageService.add({
+        severity:'success',
+        summary:'Success',
+        detail:'Registered successfully'
+      });
+
+    },1000);
+
   }
+
 }

@@ -1,37 +1,42 @@
-<h1 class="text-center mt-2 text-gray-600 text-xl font-medium my-5">
-    Reactive Form
-</h1>
+<div>
+    <p-toast position="top-right">
+    </p-toast>
 
-<form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()" class=" mx-auto max-w-md space-y-8">
-
-    <div class="space-y-0">
-        <p-floatLabel>
-            <input pInputText type="email" id="email" formControlName="email" class="input w-full" />
-            <label for="email">Email</label>
-        </p-floatLabel>
-
-        <app-error [control]="loginForm.get('email')" [errorMessages]="validationMessages.email">
-        </app-error>
+    <div class="mb-4">
+        <app-page-header title="Reactive Form"></app-page-header>
     </div>
 
+    <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()" class=" mx-auto max-w-md space-y-8">
 
-    <div class="space-y-0">
-        <p-floatLabel>
-            <input pInputText type="password" id="password" formControlName="password" class="input w-full" />
-            <label for="password">Password</label>
-        </p-floatLabel>
+        <div class="space-y-0">
+            <p-floatLabel>
+                <input pInputText type="email" id="email" formControlName="email" class="input w-full" />
+                <label for="email">Email</label>
+            </p-floatLabel>
 
-        <app-error [control]="loginForm.get('password')" [errorMessages]="validationMessages.password">
-        </app-error>
-    </div>
+            <app-error [control]="loginForm.get('email')" [errorMessages]="validationMessages.email">
+            </app-error>
+        </div>
 
 
-    <p class="text-red-500 text-sm">
-        {{ errMsg() }}
-    </p>
+        <div class="space-y-0">
+            <p-floatLabel>
+                <input pInputText type="password" id="password" formControlName="password" class="input w-full" />
+                <label for="password">Password</label>
+            </p-floatLabel>
 
-    <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded w-full" [disabled]="isLoading()">
-        {{ isLoading() ? 'Loading...' : 'Login' }}
-    </button>
+            <app-error [control]="loginForm.get('password')" [errorMessages]="validationMessages.password">
+            </app-error>
+        </div>
 
-</form>
+
+        <p class="text-red-500 text-sm">
+            {{ errMsg() }}
+        </p>
+
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded w-full" [disabled]="isLoading()">
+            {{ isLoading() ? 'Loading...' : 'Login' }}
+        </button>
+
+    </form>
+</div>

@@ -1,78 +1,99 @@
-<div class="bg-gray-100">
-    <h1 class="text-center ms-3 mt-2 text-gray-600 text-xl font-medium  my-5">Templete Driven Form :</h1>
-    <form #registerForm="ngForm" (ngSubmit)="submitRegisterForm(registerForm)" class="mx-auto max-w-md space-y-8">
+<div class="h-[100dvh] bg-gray-100 rounded-lg p-4">
 
-        <div class="space-y-0">
+    <p-toast position="top-right"></p-toast>
+
+    <div class="mb-4">
+        <app-page-header title="Template Driven Form"></app-page-header>
+    </div>
+
+    <form #registerForm="ngForm" ngModelOptions="{ updateOn: 'change' }" (ngSubmit)="submitRegisterForm(registerForm)"
+        class="mx-auto max-w-md space-y-6 pb-6">
+
+        <!-- NAME -->
+        <div>
             <p-floatLabel>
-                <input pInputText type="text" id="name" name="name" [(ngModel)]="formData.name" required minlength="3"
-                    maxlength="20" #name="ngModel" class="input w-full" />
+                <input pInputText type="text" id="name" name="name" [(ngModel)]="formData.name"
+                    [disabled]="isRegistered()" required minlength="3" maxlength="20" #name="ngModel"
+                    class="input w-full" />
                 <label for="name">Name</label>
             </p-floatLabel>
 
-            <app-error [control]="name" [errorMessages]="validationMessages.name">
+            <app-error [control]="name" [errorMessages]="validationMessages.name" [useDirty]="true">
             </app-error>
         </div>
 
-
-        <div class="space-y-0">
+        <!-- EMAIL -->
+        <div>
             <p-floatLabel>
-                <input pInputText type="email" id="email" name="email" [(ngModel)]="formData.email" required email
-                    #email="ngModel" class="input w-full" />
+                <input pInputText type="email" id="email" name="email" [(ngModel)]="formData.email"
+                    [disabled]="isRegistered()" required email #email="ngModel" class="input w-full" />
                 <label for="email">Email</label>
             </p-floatLabel>
 
-            <app-error [control]="email" [errorMessages]="validationMessages.email">
+            <app-error [control]="email" [errorMessages]="validationMessages.email" [useDirty]="true">
             </app-error>
         </div>
 
-
-        <div class="space-y-0">
+        <!-- PASSWORD -->
+        <div>
             <p-floatLabel>
-                <input pInputText type="password" id="password" name="password" [(ngModel)]="formData.password" required
-                    pattern="^[A-Z][a-z0-9]{7,20}$" #password="ngModel" class="input w-full" />
+                <input pInputText type="password" id="password" name="password" [(ngModel)]="formData.password"
+                    [disabled]="isRegistered()" required pattern="^[A-Z][a-z0-9]{7,20}$" #password="ngModel"
+                    class="input w-full" />
                 <label for="password">Password</label>
             </p-floatLabel>
 
-            <app-error [control]="password" [errorMessages]="validationMessages.password">
+            <app-error [control]="password" [errorMessages]="validationMessages.password" [useDirty]="true">
             </app-error>
         </div>
 
-
-        <div class="space-y-0">
+        <!-- CONFIRM PASSWORD -->
+        <div>
             <p-floatLabel>
                 <input pInputText type="password" id="rePassword" name="rePassword" [(ngModel)]="formData.rePassword"
-                    required #rePassword="ngModel" class="input w-full" />
+                    [disabled]="isRegistered()" required #rePassword="ngModel" class="input w-full" />
                 <label for="rePassword">Confirm Password</label>
             </p-floatLabel>
 
-            <app-error [control]="rePassword" [errorMessages]="validationMessages.rePassword">
+            <app-error [control]="rePassword" [errorMessages]="validationMessages.rePassword" [useDirty]="true">
             </app-error>
 
-            @if (rePassword.touched && formData.rePassword && !passwordMatch()) {
+            @if (rePassword.dirty && formData.rePassword && !passwordMatch() && !isRegistered()) {
             <div class="text-red-500 text-sm mt-1">
                 Passwords do not match
             </div>
             }
         </div>
 
-
-        <div class="space-y-0">
+        <!-- PHONE -->
+        <div>
             <p-floatLabel>
-                <input pInputText type="text" id="phone" name="phone" [(ngModel)]="formData.phone" required
-                    pattern="^01[0125][0-9]{8}$" #phone="ngModel" class="input w-full" />
+                <input pInputText type="text" id="phone" name="phone" [(ngModel)]="formData.phone"
+                    [disabled]="isRegistered()" required pattern="^01[0125][0-9]{8}$" #phone="ngModel"
+                    class="input w-full" />
                 <label for="phone">Phone</label>
             </p-floatLabel>
 
-            <app-error [control]="phone" [errorMessages]="validationMessages.phone">
+            <app-error [control]="phone" [errorMessages]="validationMessages.phone" [useDirty]="true">
             </app-error>
         </div>
 
+        <p class="text-red-500 text-sm">
+            {{ errMsg() }}
+        </p>
 
-        <p class="text-red-500 text-sm">{{ errMsg() }}</p>
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded w-full disabled:opacity-50"
+            [disabled]="isLoading()">
 
-        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded w-full" [disabled]="isLoading()">
-            {{ isLoading() ? 'Loading...' : 'Register' }}
+            {{
+            isLoading()
+            ? 'Loading...'
+            : isRegistered()
+            ? 'Edit'
+            : 'Register'
+            }}
         </button>
 
     </form>
+
 </div>

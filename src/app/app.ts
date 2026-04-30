@@ -15,7 +15,7 @@ import { Sidebar } from './features/components/layout/sidebar/sidebar';
   </aside>
 
 
-  <main class="flex-1 h-screen overflow-y-auto p-6">
+  <main class="flex-1 h-screen overflow-y-auto px-6 pt-3">
     <router-outlet></router-outlet>
   </main>
 

@@ -10,8 +10,12 @@ export class ValidationPipe implements PipeTransform {
 
     if (!messages || !errors) return null;
 
-    const firstErrorKey = Object.keys(errors)[0];
+    const errorKeys = Object.keys(errors);
 
-    return messages[firstErrorKey] || null;
+    if (!errorKeys.length) return null;
+
+    const firstErrorKey = errorKeys[0];
+
+    return messages[firstErrorKey] ?? null;
   }
 }

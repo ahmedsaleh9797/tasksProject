@@ -10,10 +10,9 @@
         </a>
         }
 
-        <p-button class="text-gray-500" (onClick)="toggleSidebar()" [icon]="collapsed ? 'pi pi-bars' : 'pi pi-times'"
-            rounded="true" outlined="true">
+        <p-button (onClick)="toggleSidebar()" [icon]="collapsed ? 'pi pi-bars' : 'pi pi-times'"
+            styleClass="bg-white text-gray-700 border-none hover:bg-gray-100 transition" rounded="true">
         </p-button>
-
     </div>
 
     <div class="flex-1 min-h-0">
