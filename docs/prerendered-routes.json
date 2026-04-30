@@ -1,9 +1,9 @@
 {
   "routes": {
-    "/leafletjs_example": {},
-    "/leafletjs_example/formarray": {},
-    "/leafletjs_example/home": {},
-    "/leafletjs_example/login": {},
-    "/leafletjs_example/register": {}
+    "/tasksProject": {},
+    "/tasksProject/formarray": {},
+    "/tasksProject/home": {},
+    "/tasksProject/login": {},
+    "/tasksProject/register": {}
   }
 }

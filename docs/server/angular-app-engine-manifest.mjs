@@ -1,6 +1,6 @@
 
 export default {
-  basePath: '/leafletjs_example',
+  basePath: '/tasksProject',
   allowedHosts: [],
   supportedLocales: {
   "en-US": ""
