@@ -1,6 +1,5 @@
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom, Inject, inject, provideBrowserGlobalErrorListeners, provideEnvironmentInitializer } from '@angular/core';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { ApplicationConfig, importProvidersFrom, inject, provideBrowserGlobalErrorListeners, provideEnvironmentInitializer } from '@angular/core';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
 import { AppTheme } from '../theme/my-preset';
@@ -21,12 +20,10 @@ export const appConfig: ApplicationConfig = {
     ),
     provideHttpClient(withFetch()),
     provideBrowserGlobalErrorListeners(),
-    provideClientHydration(withEventReplay()),
-importProvidersFrom(FormsModule)   ,
- provideAngularSvgIcon(),
-provideEnvironmentInitializer(() => {
+    importProvidersFrom(FormsModule),
+    provideAngularSvgIcon(),
+    provideEnvironmentInitializer(() => {
       inject(IconloaderService).loadIcons();
     }),
-
   ],
 };
