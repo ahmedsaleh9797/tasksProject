@@ -1,11 +1,10 @@
 <div>
 
-
     <div class="mb-4">
         <app-page-header [title]="pageTitle"></app-page-header>
     </div>
 
-    <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()" class=" mx-auto max-w-md space-y-8">
+    <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()" class="mx-auto max-w-md space-y-8">
 
         <div class="space-y-0">
             <p-floatLabel>
@@ -13,10 +12,9 @@
                 <label for="email">Email</label>
             </p-floatLabel>
 
-            <app-error [control]="loginForm.get('email')" [errorMessages]="validationMessages.email">
+            <app-error [control]="loginForm.get('email')" [errorMessages]="validationMessages.email" [useDirty]="true">
             </app-error>
         </div>
-
 
         <div class="space-y-0">
             <p-floatLabel>
@@ -24,10 +22,10 @@
                 <label for="password">Password</label>
             </p-floatLabel>
 
-            <app-error [control]="loginForm.get('password')" [errorMessages]="validationMessages.password">
+            <app-error [control]="loginForm.get('password')" [errorMessages]="validationMessages.password"
+                [useDirty]="true">
             </app-error>
         </div>
-
 
         <p class="text-red-500 text-sm">
             {{ errMsg() }}
