@@ -1,0 +1,115 @@
+<div class="rounded-lg min-h-screen bg-gray-100 p-5">
+
+    <div class="card max-w-6xl mx-auto p-6 md:p-8 shadow-4 border-round-2xl">
+
+        <div class="mb-6 text-center">
+            <h2 class="text-3xl font-bold text-gray-500 mb-2">
+                Form Disable
+            </h2>
+
+            <p class="text-gray-500">
+                Update your personal information
+            </p>
+        </div>
+
+        <form [formGroup]="profileForm" class="mt-14 grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+            <div class="mb-5">
+
+                <div class="flex align-items-center gap-3">
+
+                    <p-floatLabel class="w-full">
+                        <input pInputText id="firstName" formControlName="firstName" class="w-full"
+                            [disabled]="!editMode.firstName" />
+                        <label for="firstName">First Name</label>
+                    </p-floatLabel>
+
+                    <button pButton type="button" class="p-button-outlined"
+                        [label]="editMode.firstName ? 'Save' : 'Edit'"
+                        [icon]="editMode.firstName ? 'pi pi-check' : 'pi pi-pencil'" (click)="toggleEdit('firstName')">
+                    </button>
+
+                </div>
+
+                <app-error [control]="profileForm.get('firstName')" [errorMessages]="validationMessages.firstName">
+                </app-error>
+
+            </div>
+
+
+            <div class="mb-5">
+
+                <div class="flex align-items-center gap-3">
+
+                    <p-floatLabel class="w-full">
+                        <input pInputText id="lastName" formControlName="lastName" class="w-full"
+                            [disabled]="!editMode.lastName" />
+                        <label for="lastName">Last Name</label>
+                    </p-floatLabel>
+
+                    <button pButton type="button" class="p-button-outlined"
+                        [label]="editMode.lastName ? 'Save' : 'Edit'"
+                        [icon]="editMode.lastName ? 'pi pi-check' : 'pi pi-pencil'" (click)="toggleEdit('lastName')">
+                    </button>
+
+                </div>
+
+                <app-error [control]="profileForm.get('lastName')" [errorMessages]="validationMessages.lastName">
+                </app-error>
+
+            </div>
+
+
+            <div class="mb-5">
+
+                <div class="flex align-items-center gap-3">
+
+                    <p-floatLabel class="w-full">
+                        <input pInputText id="email" formControlName="email" class="w-full"
+                            [disabled]="!editMode.email" />
+                        <label for="email">Email</label>
+                    </p-floatLabel>
+
+                    <button pButton type="button" class="p-button-outlined" [label]="editMode.email ? 'Save' : 'Edit'"
+                        [icon]="editMode.email ? 'pi pi-check' : 'pi pi-pencil'" (click)="toggleEdit('email')">
+                    </button>
+
+                </div>
+
+                <app-error [control]="profileForm.get('email')" [errorMessages]="validationMessages.email">
+                </app-error>
+
+            </div>
+
+
+            <div class="mb-5">
+
+                <div class="flex align-items-center gap-3">
+
+                    <p-floatLabel class="w-full">
+                        <p-password inputId="password" formControlName="password" [feedback]="false" styleClass="w-full"
+                            inputStyleClass="w-full" [toggleMask]="true" [disabled]="!editMode.password">
+                        </p-password>
+
+                        <label for="password">Password</label>
+                    </p-floatLabel>
+
+                    <button pButton type="button" class="p-button-outlined"
+                        [label]="editMode.password ? 'Save' : 'Edit'"
+                        [icon]="editMode.password ? 'pi pi-check' : 'pi pi-pencil'" (click)="toggleEdit('password')">
+
+                    </button>
+
+                </div>
+
+                <app-error [control]="profileForm.get('password')" [errorMessages]="validationMessages.password">
+                </app-error>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+<p-toast></p-toast>
