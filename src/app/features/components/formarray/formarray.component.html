@@ -1,1 +1,89 @@
-<p>ahmed saleh </p>
+<div class="rounded-lg min-h-screen p-6 space-y-6 bg-linear-to-br from-slate-100 via-white to-slate-200">
+
+    <p-card class="w-full md:w-96 mx-auto shadow-4 border-round-xl overflow-hidden">
+
+        <div class="relative flex items-center justify-center h-16">
+
+            <button pButton type="button" icon="pi pi-plus" label="Add"
+                class="p-button-success transition-transform duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+                [class.translate-x-0]="!(cart().length > 0 || submittedData())"
+                [class.-translate-x-16]="cart().length > 0 || submittedData()" (click)="addProduct()"
+                [disabled]="isAllAdded()">
+            </button>
+
+            <button pButton type="button" icon="pi pi-trash" label="Clear"
+                class="p-button-danger absolute right-4 transition-opacity duration-500 ease-in-out"
+                [class.opacity-0]="!(cart().length > 0 || submittedData())"
+                [class.opacity-100]="cart().length > 0 || submittedData()"
+                [class.pointer-events-none]="!(cart().length > 0 || submittedData())" (click)="clearAll()">
+            </button>
+
+        </div>
+
+    </p-card>
+
+    <form [formGroup]="form">
+        <div formArrayName="cart" class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 mt-4">
+
+            @for (item of cart().controls; track $index; let i = $index) {
+
+            <div [formGroupName]="i">
+
+                <p-card>
+
+                    <ng-template pTemplate="header">
+                        <img [src]="item.value.thumbnail" class="w-full h-48 object-contain bg-white rounded-t-lg" />
+                    </ng-template>
+
+                    <div class="text-center space-y-2 p-3">
+
+                        <h3 class="font-semibold text-lg">
+                            {{ item.value.title.split(" ").slice(0, 2).join(" ") }}
+                        </h3>
+
+                        <p class="text-slate-600">
+                            Price: {{ item.value.price }}$
+                        </p>
+
+                        <p class="text-slate-500 text-sm">
+                            ID: {{ item.value.id }}
+                        </p>
+
+                    </div>
+
+                    <ng-template pTemplate="footer">
+                        <div class="flex justify-center">
+                            <button pButton type="button" label="Remove" icon="pi pi-trash" class="p-button-danger"
+                                (click)="removeProduct(i)">
+                            </button>
+                        </div>
+                    </ng-template>
+
+                </p-card>
+
+            </div>
+
+            }
+
+        </div>
+    </form>
+
+    <div class="flex justify-center mt-6">
+        <button pButton type="button" icon="pi pi-check" label="Submit" class="p-button-primary w-full md:w-96"
+            (click)="submitCart()" [disabled]="cart().length === 0">
+        </button>
+    </div>
+
+    @if (submittedData()) {
+    <div class="mt-6 bg-white p-4 rounded-lg shadow-md">
+
+        <h3 class="text-lg font-bold mb-2">Submitted JSON</h3>
+
+        <pre class="text-sm overflow-auto">
+{{ submittedData() | json }}
+        </pre>
+
+    </div>
+    }
+
+</div>
