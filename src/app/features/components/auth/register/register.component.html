@@ -1,13 +1,10 @@
 <div class="h-dvh bg-gray-100 rounded-lg p-4">
 
-
-
     <div class="mb-4">
         <app-page-header [title]="pageTitle"></app-page-header>
     </div>
 
-    <form #registerForm="ngForm" ngModelOptions="{ updateOn: 'change' }" (ngSubmit)="submitRegisterForm(registerForm)"
-        class="mx-auto max-w-md space-y-6 pb-6">
+    <form #registerForm="ngForm" (ngSubmit)="submitRegisterForm(registerForm)" class="mx-auto max-w-md space-y-6 pb-6">
 
 
         <div>
@@ -18,10 +15,9 @@
                 <label for="name">Name</label>
             </p-floatLabel>
 
-            <app-error [control]="name" [errorMessages]="validationMessages.name" [useDirty]="true">
+            <app-error [control]="name" [errorMessages]="validationMessages.name">
             </app-error>
         </div>
-
 
         <div>
             <p-floatLabel>
@@ -30,9 +26,10 @@
                 <label for="email">Email</label>
             </p-floatLabel>
 
-            <app-error [control]="email" [errorMessages]="validationMessages.email" [useDirty]="true">
+            <app-error [control]="email" [errorMessages]="validationMessages.email">
             </app-error>
         </div>
+
 
         <div>
             <p-floatLabel>
@@ -42,7 +39,7 @@
                 <label for="password">Password</label>
             </p-floatLabel>
 
-            <app-error [control]="password" [errorMessages]="validationMessages.password" [useDirty]="true">
+            <app-error [control]="password" [errorMessages]="validationMessages.password">
             </app-error>
         </div>
 
@@ -54,10 +51,10 @@
                 <label for="rePassword">Confirm Password</label>
             </p-floatLabel>
 
-            <app-error [control]="rePassword" [errorMessages]="validationMessages.rePassword" [useDirty]="true">
+            <app-error [control]="rePassword" [errorMessages]="validationMessages.rePassword">
             </app-error>
 
-            @if (rePassword.dirty && formData.rePassword && !passwordMatch() && !isRegistered()) {
+            @if (formData.rePassword && !passwordMatch() && !isRegistered()) {
             <div class="text-red-500 text-sm mt-1">
                 Passwords do not match
             </div>
@@ -73,13 +70,15 @@
                 <label for="phone">Phone</label>
             </p-floatLabel>
 
-            <app-error [control]="phone" [errorMessages]="validationMessages.phone" [useDirty]="true">
+            <app-error [control]="phone" [errorMessages]="validationMessages.phone">
             </app-error>
         </div>
+
 
         <p class="text-red-500 text-sm">
             {{ errMsg() }}
         </p>
+
 
         <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded w-full disabled:opacity-50"
             [disabled]="isLoading()">
@@ -94,5 +93,4 @@
         </button>
 
     </form>
-
 </div>

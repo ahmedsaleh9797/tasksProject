@@ -70,57 +70,47 @@ pageTitle = 'Template Driven Form';
 
   submitRegisterForm(form: NgForm) {
 
+  this.markAllAsTouched(form);
 
-    if (this.isRegistered()) {
-      this.isRegistered.set(false);
+  if (form.invalid || !this.passwordMatch()) {
 
-      this.messageService.add({
-        severity:'info',
-        summary:'Edit Mode',
-        detail:'You can edit your data now'
-      });
-
-      return;
-    }
-
-    if (form.invalid || !this.passwordMatch()) {
-
-      form.control.markAllAsTouched();
-
-      this.errMsg.set('Please fix form errors');
-
-      this.messageService.add({
-        severity:'error',
-        summary:'Validation Error',
-        detail:'Please fix form errors'
-      });
-
-      return;
-    }
-
-    this.isLoading.set(true);
+    this.errMsg.set('Please fix form errors');
 
     this.messageService.add({
-      severity:'info',
-      summary:'Submitting',
-      detail:'Creating your account...'
+      severity: 'error',
+      summary: 'Validation Error',
+      detail: 'Please fix form errors'
     });
 
-    setTimeout(() => {
-
-      this.isLoading.set(false);
-
-   
-      this.isRegistered.set(true);
-
-      this.messageService.add({
-        severity:'success',
-        summary:'Success',
-        detail:'Registered successfully'
-      });
-
-    },1000);
-
+    return;
   }
 
+  this.isLoading.set(true);
+
+  this.messageService.add({
+    severity: 'info',
+    summary: 'Submitting',
+    detail: 'Creating your account...'
+  });
+
+  setTimeout(() => {
+
+    this.isLoading.set(false);
+    this.isRegistered.set(true);
+
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Registered successfully'
+    });
+
+  }, 1000);
+}
+  markAllAsTouched(form: NgForm) {
+  Object.values(form.controls).forEach((control: any) => {
+    control.markAsTouched();
+    control.markAsDirty();
+    control.updateValueAndValidity();
+  });
+}
 }
