@@ -11,7 +11,15 @@ export const routes: Routes = [
       import('./features/components/formarray/formarray.component')
         .then(m => m.FormarrayComponent),
     title: 'Form Array'
+  } ,
+  {
+    path:'formdisable',
+    loadComponent: () => 
+      import('./features/components/formdisable/formdisable.component')
+        .then(m => m.FormdisableComponent),
+    title: 'Form Disable'
   }
+
 
     
 ];
