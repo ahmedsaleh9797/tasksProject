@@ -1,0 +1,41 @@
+<section [formGroup]="personalForm" class="mb-8 ">
+
+
+
+    <div class="mb-8">
+
+        <p-floatLabel>
+
+            <input pInputText type="text" id="firstName" formControlName="firstName" class="w-full" />
+
+            <label for="firstName">
+                First Name
+            </label>
+
+        </p-floatLabel>
+
+        <app-error [control]="personalForm.get('firstName')" [errorMessages]="validationMessages['firstName']">
+        </app-error>
+
+    </div>
+
+
+
+    <div>
+
+        <p-floatLabel>
+
+            <input pInputText type="text" id="lastName" formControlName="lastName" class="w-full" />
+
+            <label for="lastName">
+                Last Name
+            </label>
+
+        </p-floatLabel>
+
+        <app-error [control]="personalForm.get('lastName')" [errorMessages]="validationMessages['lastName']">
+        </app-error>
+
+    </div>
+
+</section>

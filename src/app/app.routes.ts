@@ -17,7 +17,14 @@ export const routes: Routes = [
     loadComponent: () => 
       import('./features/components/formdisable/formdisable.component')
         .then(m => m.FormdisableComponent),
-    title: 'Form Disable'
+    title: 'Form Disable' 
+  },
+  {
+    path: 'formchild',
+    loadComponent: () =>
+      import('./features/components/formchild/formchild.component')
+        .then(m => m.FormchildComponent),
+    title: 'Form Child'
   }
 
 

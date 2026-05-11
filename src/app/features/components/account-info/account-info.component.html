@@ -1,0 +1,43 @@
+<section [formGroup]="accountForm" class="mb-7 gap-5">
+
+
+
+    <div class="mb-8">
+
+        <p-floatLabel>
+
+            <input pInputText type="email" id="email" formControlName="email" class="w-full" />
+
+            <label for="email">
+                Email
+            </label>
+
+        </p-floatLabel>
+
+        <app-error [control]="accountForm.get('email')" [errorMessages]="validationMessages['email']">
+        </app-error>
+
+    </div>
+
+
+
+    <div>
+
+        <p-floatLabel>
+
+            <p-password formControlName="password" inputId="password" styleClass="w-full" inputStyleClass="w-full"
+                [feedback]="false">
+            </p-password>
+
+            <label for="password">
+                Password
+            </label>
+
+        </p-floatLabel>
+
+        <app-error [control]="accountForm.get('password')" [errorMessages]="validationMessages['password']">
+        </app-error>
+
+    </div>
+
+</section>
