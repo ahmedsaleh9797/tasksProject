@@ -17,8 +17,8 @@ import { ToastModule } from 'primeng/toast';
 
 
   <main class="flex-1 h-screen overflow-y-auto px-6 pt-3">
-     <p-toast position="top-right">
-    </p-toast>
+     <p-toast position="top-right" />
+    
     <router-outlet></router-outlet>
   </main>
 
