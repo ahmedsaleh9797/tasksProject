@@ -1,13 +1,42 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+
+import { Observable } from 'rxjs';
+
+export interface Product {
+
+  id: number;
+
+  title: string;
+
+  description: string;
+
+  category: string;
+
+  price: number;
+
+}
+
+export interface ProductsResponse {
+
+  products: Product[];
+
+}
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductsService {
-  constructor(private httpclient:HttpClient) {}
 
-  getProducts(){
-    return this.httpclient.get('https://dummyjson.com/products');
+export class ProductsService {
+
+  private httpClient = inject(HttpClient);
+
+  getProducts(): Observable<ProductsResponse> {
+
+    return this.httpClient.get<ProductsResponse>(
+      'https://dummyjson.com/products'
+    );
+
   }
+
 }

@@ -25,6 +25,13 @@ export const routes: Routes = [
       import('./features/components/formchild/formchild.component')
         .then(m => m.FormchildComponent),
     title: 'Form Child'
+  },
+  {
+    path: 'crudtable',
+    loadComponent: () =>
+      import('./features/components/crud-table/crud-table.component')
+        .then(m => m.CrudTableComponent),
+    title: 'Crud Table'
   }
 
 
