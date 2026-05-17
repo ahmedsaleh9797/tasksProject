@@ -24,7 +24,8 @@ export class Sidebar implements OnInit {
   collapsed = false;
   formOpen = false;
   tableOpen = false;
-
+  guardOpen = false;
+  interceptorOpen = false;
   constructor(private router: Router) {}
 
   ngOnInit() {
@@ -59,5 +60,11 @@ export class Sidebar implements OnInit {
 
   toggleTable() {
     this.tableOpen = !this.tableOpen;
+  }
+   toggleGuard() {
+    this.guardOpen = !this.guardOpen;
+  }
+    toggleInterceptor() {
+    this.interceptorOpen = !this.interceptorOpen;
   }
 }

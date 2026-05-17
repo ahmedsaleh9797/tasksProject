@@ -1,137 +1,152 @@
 <p-confirmDialog />
 
-<div class="w-310 overflow-hidden rounded-lg">
+<form [formGroup]="productsForm">
 
-    <div class="overflow-x-auto">
+    <div formArrayName="products">
 
-        <p-table [value]="products()" stripedRows showGridlines breakpoint="768px" class="min-w-[1000px]">
+        <div class="w-310 overflow-hidden rounded-lg">
 
-            <ng-template pTemplate="header">
+            <div class="overflow-x-auto">
 
-                <tr class="hidden md:table-row">
+                <p-table [value]="products()" stripedRows showGridlines breakpoint="768px" class="min-w-[1000px]">
 
-                    <th class="min-w-20">ID</th>
-                    <th class="min-w-52">Title</th>
-                    <th class="min-w-72">Description</th>
-                    <th class="min-w-44">Category</th>
-                    <th class="min-w-40">Price</th>
-                    <th class="min-w-64">Actions</th>
+                    <ng-template pTemplate="header">
 
-                </tr>
+                        <tr class="hidden md:table-row">
 
-            </ng-template>
+                            <th class="min-w-20">ID</th>
+                            <th class="min-w-52">Title</th>
+                            <th class="min-w-72">Description</th>
+                            <th class="min-w-44">Category</th>
+                            <th class="min-w-40">Price</th>
+                            <th class="min-w-64">Actions</th>
 
-            <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+                        </tr>
 
-                <tr [formGroup]="getProductForm(rowIndex)"
-                    class=" block w-150 md:table-row border border-surface-200 border-r-4 md:border-r-0 border-purple-500 rounded-xl md:rounded-none mb-4 md:mb-0 p-3 md:p-0 ">
+                    </ng-template>
 
-                    <td class="flex md:table-cell items-center justify-between gap-4 py-2 md:py-4">
-                        <span class="p-column-title md:hidden font-semibold">id :{{ rowIndex + 1 }}</span>
-                        <span>{{ product.id }}</span>
-                    </td>
+                    <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
 
+                        <tr [formGroupName]="rowIndex"
+                            class=" block w-150 md:table-row border border-surface-200 border-r-4 md:border-r-0 border-purple-500 rounded-xl md:rounded-none mb-4 md:mb-0 p-3 md:p-0 ">
 
-                    <td class="flex md:table-cell items-center justify-between gap-3 py-2 md:py-4">
+                            <td class="flex md:table-cell items-center justify-between gap-4 py-2 md:py-4">
+                                <span class="p-column-title md:hidden font-semibold">
+                                    id :{{ rowIndex + 1 }}
+                                </span>
 
-                        <span class="p-column-title md:hidden font-semibold min-w-24">
-                            Title
-                        </span>
+                                <span>{{ product.id }}</span>
+                            </td>
 
-                        <div class="w-full md:w-full">
-                            <input pInputText formControlName="title"
-                                class="ms-20 lg:w-full lg:min-w-0 md:w-full md:min-w-0 md:mx-0 sm:ms-60" />
-                        </div>
+                            <td class="flex md:table-cell items-center justify-between gap-3 py-2 md:py-4">
 
-                    </td>
+                                <span class="p-column-title md:hidden font-semibold min-w-24">
+                                    Title
+                                </span>
 
+                                <div class="w-full md:w-full">
 
-                    <td class="flex md:table-cell items-start justify-between gap-3 py-2 md:py-4">
+                                    <input pInputText formControlName="title"
+                                        class="ms-20 lg:w-full lg:min-w-0 md:w-full md:min-w-0 md:mx-0 sm:ms-60" />
 
-                        <span class="p-column-title md:hidden font-semibold pt-2 min-w-24">
-                            Desc
-                        </span>
+                                </div>
 
-                        <div class="w-full md:w-full">
-                            <input pInputText formControlName="description"
-                                class="ms-20 lg:w-full lg:min-w-0 md:w-full md:min-w-0 md:mx-0 sm:ms-60" />
-                        </div>
+                            </td>
 
-                    </td>
+                            <td class="flex md:table-cell items-start justify-between gap-3 py-2 md:py-4">
 
+                                <span class="p-column-title md:hidden font-semibold pt-2 min-w-24">
+                                    Desc
+                                </span>
 
-                    <td class=" flex md:table-cell  items-center justify-between gap-3 py-2 md:py-4 ">
+                                <div class="w-full md:w-full">
 
-                        <span class="p-column-title md:hidden font-semibold min-w-24">
-                            Cat
-                        </span>
+                                    <input pInputText formControlName="description"
+                                        class="ms-20 lg:w-full lg:min-w-0 md:w-full md:min-w-0 md:mx-0 sm:ms-60" />
 
-                        <div class="w-full md:w-full">
-                            <input pInputText formControlName="category"
-                                class="ms-20 lg:w-full lg:min-w-0 md:w-full md:min-w-0 md:mx-0 sm:ms-60 " />
-                        </div>
+                                </div>
 
-                    </td>
+                            </td>
 
+                            <td class=" flex md:table-cell  items-center justify-between gap-3 py-2 md:py-4 ">
 
-                    <td class="flex md:table-cell items-center justify-between gap-3 py-2 md:py-4">
+                                <span class="p-column-title md:hidden font-semibold min-w-24">
+                                    Cat
+                                </span>
 
-                        <span class="p-column-title md:hidden font-semibold min-w-24">
-                            Price
-                        </span>
+                                <div class="w-full md:w-full">
 
-                        <div class="w-full md:w-full">
-                            <p-inputNumber formControlName="price" mode="decimal"
-                                class="ms-20 lg:w-full lg:min-w-0 md:w-full md:min-w-0 md:mx-0 sm:ms-60">
-                            </p-inputNumber>
-                        </div>
+                                    <input pInputText formControlName="category"
+                                        class="ms-20 lg:w-full lg:min-w-0 md:w-full md:min-w-0 md:mx-0 sm:ms-60 " />
 
-                    </td>
+                                </div>
 
+                            </td>
 
-                    <td class="flex md:table-cell items-center justify-between gap-4 py-3 md:py-4">
+                            <td class="flex md:table-cell items-center justify-between gap-3 py-2 md:py-4">
 
-                        <span class="p-column-title md:hidden font-semibold">
-                            Actions
-                        </span>
+                                <span class="p-column-title md:hidden font-semibold min-w-24">
+                                    Price
+                                </span>
 
-                        <div
-                            class=" ms-32 md:ms-0 flex flex-nowrap md:flex-nowrap items-center gap-2 w-full md:w-auto sm:ms-72">
+                                <div class="w-full md:w-full">
 
-                            <button pButton type="button" label="View" icon="pi pi-eye"
-                                class="p-button-outlined text-purple-500 whitespace-nowrap" (click)="openView(product)">
-                            </button>
+                                    <p-inputNumber formControlName="price" mode="decimal"
+                                        class="ms-20 lg:w-full lg:min-w-0 md:w-full md:min-w-0 md:mx-0 sm:ms-60">
+                                    </p-inputNumber>
 
-                            @if (!isEditing(product.id)) {
+                                </div>
 
-                            <button pButton type="button" label="Edit" icon="pi pi-pencil"
-                                class="p-button-outlined text-purple-500 whitespace-nowrap"
-                                (click)="editRow(rowIndex, product.id)">
-                            </button>
+                            </td>
 
-                            }
+                            <td class="flex md:table-cell items-center justify-between gap-4 py-3 md:py-4">
 
-                            @if (isEditing(product.id)) {
+                                <span class="p-column-title md:hidden font-semibold">
+                                    Actions
+                                </span>
 
-                            <button pButton type="button" label="Save" icon="pi pi-save"
-                                class="p-button-success whitespace-nowrap" (click)="saveRow(rowIndex)">
-                            </button>
+                                <div
+                                    class=" ms-32 md:ms-0 flex flex-nowrap md:flex-nowrap items-center gap-2 w-full md:w-auto sm:ms-72">
 
-                            }
+                                    <button pButton type="button" label="View" icon="pi pi-eye"
+                                        class="p-button-outlined text-purple-500 whitespace-nowrap"
+                                        (click)="openView(product)">
+                                    </button>
 
-                        </div>
+                                    @if (!isEditing(product.id)) {
 
-                    </td>
+                                    <button pButton type="button" label="Edit" icon="pi pi-pencil"
+                                        class="p-button-outlined text-purple-500 whitespace-nowrap"
+                                        (click)="editRow(rowIndex, product.id)">
+                                    </button>
 
-                </tr>
+                                    }
 
-            </ng-template>
+                                    @if (isEditing(product.id)) {
 
-        </p-table>
+                                    <button pButton type="button" label="Save" icon="pi pi-save"
+                                        class="p-button-success whitespace-nowrap" (click)="saveRow(rowIndex)">
+                                    </button>
+
+                                    }
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </ng-template>
+
+                </p-table>
+
+            </div>
+
+        </div>
 
     </div>
 
-</div>
+</form>
 
 <p-dialog header="Product Details" [visible]="viewDialog()" [modal]="true" [breakpoints]="{
         '960px': '75vw',

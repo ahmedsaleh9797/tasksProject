@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { PageHeaderComponent } from '@app/shared/components/page-header/page-header.component';
 import { MessageService } from 'primeng/api';
+import { HttpClient } from '@angular/common/http';
 @Component({
   imports: [
     ReactiveFormsModule,
@@ -24,7 +25,7 @@ import { MessageService } from 'primeng/api';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-
+private http = inject(HttpClient);
   private messageService = inject(MessageService);
   private router = inject(Router);
   private fb = inject(FormBuilder);
@@ -55,6 +56,7 @@ pageTitle = 'Reactive Form';
       pattern: 'Password must start with uppercase and be valid'
     }
   };
+ 
 
   submitLoginForm(): void {
 
@@ -85,17 +87,21 @@ pageTitle = 'Reactive Form';
 
   setTimeout(() => {
 
-    this.isLoading.set(false);
+  this.isLoading.set(false);
 
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: 'Logged in successfully',
-      life: 2000
-    });
 
-    this.router.navigate(['/home']);
+  localStorage.setItem('token', '123');
 
-  }, 1000);
+  this.messageService.add({
+    severity: 'success',
+    summary: 'Success',
+    detail: 'Logged in successfully',
+    life: 2000
+  });
+
+ 
+  this.router.navigate(['/guard']);
+
+}, 1000);
 }
 }

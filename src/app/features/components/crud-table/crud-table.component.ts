@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  computed,
   effect,
   inject,
   signal
@@ -71,7 +70,7 @@ export class CrudTableComponent {
 
   editingRowId = signal<number | null>(null);
 
-  productsForm!: FormArray;
+  productsForm!: FormGroup;
 
   constructor() {
 
@@ -109,53 +108,63 @@ export class CrudTableComponent {
 
   initializeForm(): void {
 
-    this.productsForm = this.fb.array(
+    this.productsForm = this.fb.group({
 
-      this.products().map((product: any) =>
+      products: this.fb.array(
 
-        this.fb.group({
+        this.products().map((product: any) =>
 
-          id: [product.id],
+          this.fb.group({
 
-          title: [
-            {
-              value: product.title,
-              disabled: true
-            }
-          ],
+            id: [product.id],
 
-          description: [
-            {
-              value: product.description,
-              disabled: true
-            }
-          ],
+            title: [
+              {
+                value: product.title,
+                disabled: true
+              }
+            ],
 
-          category: [
-            {
-              value: product.category,
-              disabled: true
-            }
-          ],
+            description: [
+              {
+                value: product.description,
+                disabled: true
+              }
+            ],
 
-          price: [
-            {
-              value: product.price,
-              disabled: true
-            }
-          ]
+            category: [
+              {
+                value: product.category,
+                disabled: true
+              }
+            ],
 
-        })
+            price: [
+              {
+                value: product.price,
+                disabled: true
+              }
+            ]
+
+          })
+
+        )
 
       )
 
-    );
+    });
+
+  }
+
+  get productsArray(): FormArray {
+
+    return this.productsForm.get('products') as FormArray;
 
   }
 
   getProductForm(index: number): FormGroup {
 
-    return this.productsForm.at(index) as FormGroup;
+    return this.productsArray.at(index) as FormGroup;
 
   }
 
@@ -178,45 +187,45 @@ export class CrudTableComponent {
 
   }
 
- saveRow(index: number): void {
+  saveRow(index: number): void {
 
-  this.confirmationService.confirm({
+    this.confirmationService.confirm({
 
-    message: 'Are you sure you want to save changes?',
+      message: 'Are you sure you want to save changes?',
 
-    header: 'Confirm Save',
+      header: 'Confirm Save',
 
-    icon: 'pi pi-exclamation-triangle',
+      icon: 'pi pi-exclamation-triangle',
 
-    accept: () => {
+      accept: () => {
 
-      const updatedProduct =
-        this.getProductForm(index).getRawValue();
+        const updatedProduct =
+          this.getProductForm(index).getRawValue();
 
-      const updatedProducts = [
-        ...this.products()
-      ];
+        const updatedProducts = [
+          ...this.products()
+        ];
 
-      updatedProducts[index] = updatedProduct;
+        updatedProducts[index] = updatedProduct;
 
-      this.products.set(updatedProducts);
+        this.products.set(updatedProducts);
 
-      localStorage.setItem(
-        'products',
-        JSON.stringify(this.products())
-      );
+        localStorage.setItem(
+          'products',
+          JSON.stringify(this.products())
+        );
 
-      this.getProductForm(index).disable();
+        this.getProductForm(index).disable();
 
-      this.editingRowId.set(null);
+        this.editingRowId.set(null);
 
-      this.confirmationService.close();
+        this.confirmationService.close();
 
-    }
+      }
 
-  });
+    });
 
-}
+  }
 
   isEditing(productId: number): boolean {
 

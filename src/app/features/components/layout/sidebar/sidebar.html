@@ -2,16 +2,16 @@
     [class.w-20]="collapsed">
 
 
-    <div class="flex items-center justify-between px-4 pt-3 shrink-0">
+    <div class="flex items-center justify-between px-3 pt-3 shrink-0">
 
         @if(!collapsed){
         <a routerLink="home">
-            <span class="font-bold text-2xl text-gray-500">Tasks</span>
+            <span class=" font-bold text-2xl text-gray-500">Tasks</span>
         </a>
         }
 
         <p-button (onClick)="toggleSidebar()" [icon]="collapsed ? 'pi pi-bars' : 'pi pi-times'"
-            styleClass="bg-white text-gray-500 border-none hover:bg-gray-100 transition" rounded="true">
+            styleClass="ms-auto bg-white text-gray-500 border-none hover:bg-gray-100 transition" rounded="true">
         </p-button>
 
     </div>
@@ -116,6 +116,75 @@
                 }
 
             </li>
+            <li class="mt-6">
+
+                <div (click)="toggleGuard()" pRipple
+                    class="p-3 flex items-center justify-between cursor-pointer rounded-lg hover:bg-gray-100">
+
+                    @if(collapsed){
+                    <h2 class="font-bold text-gray-500">gr</h2>
+                    }
+
+                    @if(!collapsed){
+                    <span class="font-bold text-gray-500">Guard</span>
+
+                    <i class="text-gray-500 pi" [class.pi-chevron-down]="!guardOpen"
+                        [class.pi-chevron-up]="guardOpen"></i>
+                    }
+
+                </div>
+
+                @if(guardOpen && !collapsed){
+                <ul class="list-none p-0 m-0 ml-4">
+
+                    <li>
+                        <a routerLink="guard" routerLinkActive="text-blue-500 bg-gray-100" pRipple
+                            class="flex gap-2 p-3 rounded-lg hover:bg-gray-100">
+                            guard
+                        </a>
+                    </li>
+
+
+
+                </ul>
+                }
+
+            </li>
+            <li class="mt-6">
+
+                <div (click)="toggleInterceptor()" pRipple
+                    class="p-3 flex items-center justify-between cursor-pointer rounded-lg hover:bg-gray-100">
+
+                    @if(collapsed){
+                    <h2 class="font-bold text-gray-500">int</h2>
+                    }
+
+                    @if(!collapsed){
+                    <span class="font-bold text-gray-500">interceptor</span>
+
+                    <i class="text-gray-500 pi" [class.pi-chevron-down]="!interceptorOpen"
+                        [class.pi-chevron-up]="interceptorOpen"></i>
+                    }
+
+                </div>
+
+                @if(interceptorOpen && !collapsed){
+                <ul class="list-none p-0 m-0 ml-4">
+
+                    <li>
+                        <a routerLink="interceptor" routerLinkActive="text-blue-500 bg-gray-100" pRipple
+                            class="flex gap-2 p-3 rounded-lg hover:bg-gray-100">
+                            interceptor
+                        </a>
+                    </li>
+
+
+
+                </ul>
+                }
+
+            </li>
+
 
         </ul>
 

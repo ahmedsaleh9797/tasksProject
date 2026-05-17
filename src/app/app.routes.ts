@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './features/components/auth/auth-guard';
 
 export const routes: Routes = [
  { path: '', redirectTo: 'home', pathMatch: 'full' },    
@@ -32,7 +33,22 @@ export const routes: Routes = [
       import('./features/components/crud-table/crud-table.component')
         .then(m => m.CrudTableComponent),
     title: 'Crud Table'
-  }
+  },
+  {
+    path: 'guard',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/components/guard/guard.component')
+        .then(m => m.GuardComponent),
+    title: 'Guard'
+  },
+   {
+    path: 'interceptor',
+    loadComponent: () =>
+      import('./features/components/interceptor/interceptor.component')
+        .then(m => m.InterceptorComponent),
+    title: 'Interceptor'
+  },
 
 
     
