@@ -31,7 +31,7 @@ private http = inject(HttpClient);
   private fb = inject(FormBuilder);
   errMsg: WritableSignal<string> = signal('');
   isLoading: WritableSignal<boolean> = signal(false);
-pageTitle = 'Reactive Form';
+pageTitle = ' Register To Reactive Form';
 
   loginForm: FormGroup = this.fb.group({
     email: ['', [
