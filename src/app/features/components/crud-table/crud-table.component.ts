@@ -76,31 +76,29 @@ export class CrudTableComponent {
 
     effect(() => {
 
+      const apiData = this.apiProducts();
+
+      if (!apiData.products.length) return;
+
       const savedProducts =
         localStorage.getItem('products');
 
-      if (savedProducts) {
+      const finalProducts = savedProducts
+        ? JSON.parse(savedProducts)
+        : apiData.products;
 
-        this.products.set(
-          JSON.parse(savedProducts)
-        );
+      this.products.set(finalProducts);
 
-      } else {
-
-        this.products.set(
-          this.apiProducts().products
-        );
+      if (!savedProducts) {
 
         localStorage.setItem(
           'products',
-          JSON.stringify(this.products())
+          JSON.stringify(finalProducts)
         );
 
       }
 
-      if (this.products().length) {
-        this.initializeForm();
-      }
+      this.initializeForm();
 
     });
 
@@ -184,6 +182,10 @@ export class CrudTableComponent {
     this.editingRowId.set(productId);
 
     this.getProductForm(index).enable();
+
+    this.getProductForm(index)
+      .get('id')
+      ?.disable();
 
   }
 

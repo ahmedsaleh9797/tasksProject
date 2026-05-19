@@ -16,6 +16,8 @@ export const appConfig: ApplicationConfig = {
     providePrimeNG(AppTheme),
     provideRouter(
       routes,
+    
+       
       withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
       withComponentInputBinding(),
     ),
@@ -28,3 +30,4 @@ export const appConfig: ApplicationConfig = {
     }),
   ],
 };
+
