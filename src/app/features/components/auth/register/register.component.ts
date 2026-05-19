@@ -69,6 +69,10 @@ pageTitle = 'Template Driven Form';
 
 
   submitRegisterForm(form: NgForm) {
+     if (this.isRegistered()) {
+    this.isRegistered.set(false);
+    return;
+  }
 
   this.markAllAsTouched(form);
 
